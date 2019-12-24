@@ -10,6 +10,8 @@ networks:
 
 volumes: 
   workspace: 
+  ssh:
+  authorize:
   
 services:
   control:
@@ -18,6 +20,7 @@ services:
       - "8000:8000"
     volumes:
       - workspace:/workspace
+      - ssh:/home/devops
     networks:
       custom:
         ipv4_address: 192.168.61.10
@@ -29,6 +32,8 @@ services:
     image: codespaces/ansible-node-centos-6:v0.3.6
     ports:
        - "80:80"
+    volumes:
+      - authorize:/home/devops/.ssh
     networks:
       custom:
         ipv4_address: 192.168.61.11
@@ -40,6 +45,8 @@ services:
     image: codespaces/ansible-node-centos-6:v0.3.6
     ports:
        - "81:80"
+    volumes:
+      - authorize:/home/devops/.ssh
     networks:
       custom:
         ipv4_address: 192.168.61.12
@@ -51,6 +58,8 @@ services:
     image: codespaces/ansible-node-centos-6:v0.3.6
     ports:
       - "82:80"
+    volumes:
+      - authorize:/home/devops/.ssh
     networks:
       custom:
         ipv4_address: 192.168.61.13
@@ -62,6 +71,8 @@ services:
     image: codespaces/ansible-node-ubuntu-1404:v0.1.0
     ports:
       - "83:80"
+    volumes:
+      - authorize:/home/devops/.ssh
     networks:
       custom:
         ipv4_address: 192.168.61.15
@@ -73,6 +84,8 @@ services:
     image: codespaces/ansible-node-centos-6:v0.3.6
     ports:
       - "3306:3306"
+    volumes:
+      - authorize:/home/devops/.ssh
     networks:
       custom:
         ipv4_address: 192.168.61.14
